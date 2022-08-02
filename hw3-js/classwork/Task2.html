@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Task 2</title>
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="wrap" id="wrap">
+      <header>
+        <button id="HouseButton">House</button>
+        <button id="TreeButton">Tree</button>
+        <button id="PlaneButton">Plane</button>
+      </header>
+      <div id="chooseYourBlock"></div>
+      <div id="result"></div>
+    </div>
+    <script>
+      /*
+        Завдання:
+
+         За натисканням кнопки в блок з id chooseYourBlock виводити іконку з натиснутою кнопки:
+
+         House: https://image.flaticon.com/icons/svg/149/149064.svg // taker any oher image
+         Tree: https://image.flaticon.com/icons/svg/620/620705.svg // taker any oher image
+         Plane: https://image.flaticon.com/icons/svg/579/579268.svg // taker any oher image
+
+         Під іконкою розташувати ще одну кнопку, натиснувши на яку з відповідного масиву
+         підтягується випадкова картинка із зображенням у блок result.
+         Попередній результат очищується.
+
+
+
+      */
+      var houseArray = [
+        "https://static.pexels.com/photos/106399/pexels-photo-106399.jpeg",
+        "https://i.pinimg.com/736x/7f/be/50/7fbe50ec634c65709d7fe6ac267c4e6f--large-garage-plans-house-plans-large-family.jpg",
+        "https://i.ytimg.com/vi/Xx6t0gmQ_Tw/maxresdefault.jpg",
+      ];
+      var planeArray = [
+        "http://www.x-plane.com/wp-content/uploads/2014/08/B777-200ER.png",
+        "https://media.cntraveler.com/photos/57067c1e9adc6caf5afe3f4c/master/pass/plane-landing-cr-getty-sb10062851ai-001.jpg",
+        "https://media.wired.com/photos/59323264a31264584499367f/master/w_1024,c_limit/diesel-plane-inline.jpg",
+      ];
+      var treeArray = [
+        "https://static.pexels.com/photos/56875/tree-dawn-nature-bucovina-56875.jpeg",
+        "https://c1.staticflickr.com/8/7218/7184786016_1ddab461e8_b.jpg",
+        "http://www.atzmut.com/wp-content/uploads/2016/01/tree.jpg",
+      ];
+
+      var buttons = document.querySelectorAll("button");
+      var iconBlock = document.getElementById("chooseYourBlock");
+      var resultBlock = document.getElementById("result");
+
+      let randomNum = generateRandomInteger(3);
+
+      function getRandomPhoto(randomNum) {
+        let photosrc = houseArray[randomNum];
+        return photosrc;
+      }
+      function getRandomPhotoTree(randomNum) {
+        let photosrc = treeArray[randomNum];
+        return photosrc;
+      }
+      function getRandomPhotoPlane(randomNum) {
+        let photosrc = planeArray[randomNum];
+        return photosrc;
+      }
+
+      var randomPhotoSrc = getRandomPhoto(randomNum);
+      var randomPhotoSrc2 = getRandomPhotoTree(randomNum);
+      var randomPhotoSrc3 = getRandomPhotoPlane(randomNum);
+
+      var iconsObj = {
+        house:
+          "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABmJLR0QA/wD/AP+gvaeTAAABUUlEQVRIie3UzStEURjH8Y+XZiyU2LJkQbOUl2Ile1b+B/kH/A92bMV/4GUhhZUFFoq9BcVCaVBeSqOxmDOZxr0zFzNK3W89dTvn/J7f85x7ziElpUm01Jhrxzgm0B+iF53IoCuse8QbnnCDixCHOEYhaTF9WMEDir+MeyyHnDWZxXMDDKvjFXOVRpVbPYwjpS2O4h0HuA6d5MN4D7pDV1Noi9EXMIbT6omtOlUvxSSsZKlOjo0oUb6OaDKB8USdHHdRopcagkdkExhnwtq4PC9RovOIhQ9Kv2A6gWmZaWyKvhVnUYJZXGEfixgVf1DgROkwxtGGkZBrD5eY+UYDsZS7+BGtjaggNU6N/61xP1YxFDE3iHUMNKKoauaV7u0tcj7vcS6MFbHQDOMsdirMi1XfO5K95z8ig21f3+BddDTLNM78T0zLZLEWomnbm9IQPgDqUZvAddZtHQAAAABJRU5ErkJggg==",
+        tree: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABmJLR0QA/wD/AP+gvaeTAAABpElEQVQ4jc1TMUsjYRB9s9kkm90NIYGsGoiFRxKOM4JsLEJaxSo26WwsxdrKH+APuebA4uAwVcDC5hRho4iKCWoQhFVWUNR8d/my2f0sRDhM4oHX3OtmeDO894YB/hH0tmGVyyo4zwd0PS9LUhIAer5/67XbRwiHjwrV6q++BQcLC6Wwpi2GdP2LoqqfIrHYKAUCsuj1BACQLJPwPPf34+NNh7FWt90+4Yx9m97c/EmHlcrKWDa7Hk0m4yCC02qdPThO1e90jjnnDfJ9CkUiOUlRJmOGUTYmJjIQAk+Oc2+fn6/JYU0rRg0j/iqp1+3eTG1srL5xtgMAF8vLMwAyIEJ0ZCSu2HZJApH08QRJksl1a9eNRhpEBAAuY9vD+C5j29fN5kshhPA5r/Vd4RW7s7OfE+n0VwC4u7paKm5tnQ7iyUPVeZ6aHB+fAYD7y0t1GO/j/v+bBX0ZWKYZRCpVS6RSmZD6Yt3IZn9Yun4G254v1OvuuwoK9brbUpQ5ztgeAAEi0WVsf9AwMOCZ/lSi5XLfAYA1m5VBw3+FZZpByzSD73GeAbxYnshtFVF2AAAAAElFTkSuQmCC",
+        plane:
+          "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAAEgklEQVRoge2Y729TVRjHP+fe23VuLQwJDhsyxF+oRJgMhQw1TEiIiMzEhKi8AF7MJf4Pxr3Sv4FgQiBGDK/46QuNGT8WgeDCj4WECGwLQgfbzOjabnftvefxRdutrB1du3tjSPp5c9Pbc57n+z33Oc+5LVSpUqVKlSrPMKrSiRsv9TUqcd7UolYr1BsgrwENKEIIYaABCGWHJ4GxzFUlBIkZMIjiNqjbjsvfk0usgZtr1qT8MSCi3uu5utawjK2C2opIa1aglzigboOcF+S8iTp3sbX5QalJcxrY0j1Qa9fGdmnhc6BNwTJP5c6POwrOodTJWnvRb2fbVtmzBxQY2HTx+kat9V6l1BfAkgoTxwANpBBMFCGgtsJYOeLAcS3Gj1da376AUgJ5BjZeuvY+mgPAW6UiiRaclE16agrtuLeea1jyvQE3XNHD1DHau2FDevacLd3dlmMtDadqpMF0VchFr8R119nJZIdhGiutYBDTCszXzC0MOi5vau6ZMfDntUFgZXHBmqmJJHYyjp1IkJ6yQQRgKPqgqYmuNme+mWfTcuBAYMgI/gOqURkmwfp6autCBEMhaoK1oOas8oHLrc0vW3kyQ/kV5ToOk7ExJuJxUhNJRHSxIIMLEQ/Q29mZjhw83A80inax4+PY8XF4BIZpZQyFwtSFGzAsM08uYYA8A+qCKLVrKj5uJMf+ZSI+nlvlp1GzEPF5aoLF+ol2HSbHY0yOx3is7hOsD1Pf8Dx1ixa7KNXzhIHHj4ZOT8TGPnPTBeU7JwqCXshXqJpSSyUCdiKOnYjz2AqYdYuXngIwcgNCw/eOuOn03XISi/LGgJTZoVwnPWA5sZ8gz0BvZ2daRL4rK7OW+T+up1NWHBH59ubu3SnIMwAwFB08CqpvnnFsUeqHchLPKSgTp+CQKo7qy+jMfpr9deTg4Xbg+ByzR4FuhZw204FT977ZM1a+3OI0HjlSb6b4SAk7BdkJRIoOFGmPfr3vZO5j0SYbOXj4FLATEKAXkV8NQ525f3/gL7q6ivZTT+nqMlasWLVBa/kEpXYALVmtp6Mdez/NH1r8lDh2zIyMTa1L1zjRkf37H1aiIdH+ZTeoLTN35GzoxNG2SmItO3RoeSBlRaJDd6/NXsCKX6dLkWj/qqAzhk787Hk+q/QQDxBBdMlDsSL8MyCCiMyIL32qV4RvBsR1Mwb0jBE/8NGARrR+4kn4gW8GtONmRIuefhJ+4GsJkdsDop9dA9NlpP05//wz4DgzHUhny8gHfDTgPrn6z54BJ9v/9fTVDzw72kff3bZNtPu7aJ3t/XrmDNC6wIwW2bai/+ofC83rmQEBNbz2g0OI7J0umQLhuc0sv0QGr+9Rmf+OFoRnJaRAJDDR8XDSWo4r2ws2cHYPKOhOWsl9XojPxvOWkdWbw2nHPitary+ycW/YhvnhK/29Ma/y+fI6PfTqO8u0Iz3A67l7Av01BDa/MHilot8Xc2GUHlI+L965OuK65g7gEQDCKIZ87LV434k2rW+JvtR8Jtq0vuX/1lKlSpUq/vAfFQVLnZdJnvgAAAAASUVORK5CYII=",
+      };
+
+      function showIcon(e) {
+        var val = e.target.innerText.toLowerCase();
+        if (val === "house") {
+          let houseImage = document.createElement("img");
+          houseImage.src = iconsObj.house;
+          let newBtnHouse = document.createElement("button");
+          newBtnHouse.innerHTML = "buttonHouse";
+          iconBlock.appendChild(houseImage);
+          iconBlock.appendChild(newBtnHouse);
+          newBtnHouse.classList.add("class");
+
+          var newBtnHouseUpdate = document.querySelector(".class");
+          newBtnHouseUpdate.addEventListener("click", function (e) {
+            var resultBtnImage = document.createElement("img");
+            resultBtnImage.src = randomPhotoSrc;
+            newBtnHouseUpdate.appendChild(resultBtnImage);
+          });
+        } else if (val === "tree") {
+          let treeImage = document.createElement("img");
+          treeImage.src = iconsObj.tree;
+          let newBtnTree = document.createElement("button");
+          newBtnTree.innerHTML = "buttonTree";
+          iconBlock.appendChild(treeImage);
+          iconBlock.appendChild(newBtnTree);
+          newBtnTree.classList.add("class");
+
+          var newBtnTreeUpdate = document.querySelector(".class");
+          newBtnTreeUpdate.addEventListener("click", function (e) {
+            var resultBtnImage2 = document.createElement("img");
+            resultBtnImage2.src = randomPhotoSrc2;
+            newBtnTreeUpdate.appendChild(resultBtnImage2);
+          });
+        } else if (val === "plane") {
+          let planeImage = document.createElement("img");
+          planeImage.src = iconsObj.plane;
+          let newBtnPlane = document.createElement("button");
+          newBtnPlane.innerHTML = "buttonPlane";
+          iconBlock.appendChild(planeImage);
+          iconBlock.appendChild(newBtnPlane);
+          newBtnPlane.classList.add("class");
+
+          var newBtnPlaneUpdate = document.querySelector(".class");
+          newBtnPlaneUpdate.addEventListener("click", function (e) {
+            var resultBtnImage3 = document.createElement("img");
+            resultBtnImage3.src = randomPhotoSrc3;
+            newBtnPlaneUpdate.appendChild(resultBtnImage3);
+          });
+        }
+      }
+
+      buttons.forEach((item) => {
+        item.addEventListener("click", showIcon);
+      });
+
+      function generateRandomInteger(max) {
+        return Math.floor(Math.random() * max) + 1;
+      }
+
+      // steps to do
+      // 1. on btn click define which button was clicked and take its innerHTML
+      // 2. with value from step 1 take img.src from iconsObj
+      // 3. create tag img and paste src attr from step 2, and create btn
+      // 4. on button add event listener which will create an img with random src from array corresponding arr: houseArray, planeArray, treeArray
+      // 5. append img from step 3 into chooseYourBlock
+      // 6. append btn from step 4 into chooseYourBlock
+    </script>
+  </body>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Task 3</title>
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="wrap" id="wrap">
+      <h1>Переключение слайдера</h1>
+      <div class="roadMap__container yellow">
+        <button class="navButtonPrev" data-direction="<">Prev</button>
+        <div class="roadMap">
+          <div class="roadMapPoint yellow" data-id="1"></div>
+          <div class="roadMapPoint yellow" data-id="2"></div>
+          <div class="roadMapPoint yellow" data-id="3"></div>
+          <div class="roadMapPoint yellow ball" data-id="4"></div>
+          <div class="roadMapPoint yellow" data-id="5"></div>
+          <div class="roadMapPoint yellow" data-id="6"></div>
+          <div class="roadMapPoint yellow" data-id="7"></div>
+          <div class="roadMapPoint yellow" data-id="8"></div>
+        </div>
+        <button class="navButtonNext" data-direction=">">Next</button>
+      </div>
+
+      <div class="roadMap__container red">
+        <button class="navButtonPrevRed" data-direction="<">Prev</button>
+        <div class="roadMap">
+          <div class="roadMapPoint red" data-id="1"></div>
+          <div class="roadMapPoint red" data-id="2"></div>
+          <div class="roadMapPoint red ball" data-id="3"></div>
+          <div class="roadMapPoint red" data-id="4"></div>
+        </div>
+        <button class="navButtonNextRed" data-direction=">">Next</button>
+      </div>
+
+      <div class="roadMap__container blue">
+        <button class="navButtonPrevBlue" data-direction="<">Prev</button>
+        <div class="roadMap">
+          <div class="roadMapPoint blue" data-id="1"></div>
+          <div class="roadMapPoint blue ball" data-id="2"></div>
+          <div class="roadMapPoint blue" data-id="3"></div>
+          <div class="roadMapPoint blue" data-id="4"></div>
+        </div>
+        <button class="navButtonNextBlue" data-direction=">">Next</button>
+      </div>
+
+      <div class="roadMap__container green">
+        <button class="navButtonPrevGreen" data-direction="<">Prev</button>
+        <div class="roadMap">
+          <div class="roadMapPoint green" data-id="1"></div>
+          <div class="roadMapPoint green" data-id="2"></div>
+          <div class="roadMapPoint green ball" data-id="3"></div>
+          <div class="roadMapPoint green" data-id="4"></div>
+        </div>
+        <button class="navButtonNextGreen" data-direction=">">Next</button>
+      </div>
+
+      <div class="roadMap__container purple">
+        <button class="navButtonPrevPurple" data-direction="<">Prev</button>
+        <div class="roadMap">
+          <div class="roadMapPoint purple" data-id="1"></div>
+          <div class="roadMapPoint purple ball" data-id="2"></div>
+          <div class="roadMapPoint purple" data-id="3"></div>
+          <div class="roadMapPoint purple" data-id="4"></div>
+        </div>
+        <button class="navButtonNextPurple" data-direction=">">Next</button>
+      </div>
+    </div>
+    <script>
+      let lookingForClassMinusYellow = function () {
+        let test = document.querySelectorAll(".roadMapPoint.yellow");
+        for (let i = 0; i < test.length; i++) {
+          if (test[i].classList.contains("ball")) {
+            test[i].classList.remove("ball");
+            test[i - 1].classList.add("ball");
+          }
+        }
+      };
+
+      let lookingForClassNextYellow = function () {
+        let test = document.querySelectorAll(".roadMapPoint.yellow");
+        for (let i = 0; i < test.length; i = i + 1) {
+          if (test[i].classList.contains("ball")) {
+            test[i].classList.remove("ball");
+            console.log(i + 1);
+            test[i + 1].classList.add("ball");
+            console.log(test[i + 1]);
+            break;
+          }
+        }
+      };
+
+      let lookingForClassMinusRed = function () {
+        let test = document.querySelectorAll(".roadMapPoint.red");
+        for (let i = 0; i < test.length; i++) {
+          if (test[i].classList.contains("ball")) {
+            test[i].classList.remove("ball");
+            test[i - 1].classList.add("ball");
+          }
+        }
+      };
+
+      let lookingForClassNextRed = function () {
+        let test = document.querySelectorAll(".roadMapPoint.red");
+        for (let i = 0; i < test.length; i = i + 1) {
+          if (test[i].classList.contains("ball")) {
+            test[i].classList.remove("ball");
+            console.log(i + 1);
+            test[i + 1].classList.add("ball");
+            console.log(test[i + 1]);
+            break;
+          }
+        }
+      };
+
+      let lookingForClassMinusBlue = function () {
+        let test = document.querySelectorAll(".roadMapPoint.blue");
+        for (let i = 0; i < test.length; i++) {
+          if (test[i].classList.contains("ball")) {
+            test[i].classList.remove("ball");
+            test[i - 1].classList.add("ball");
+          }
+        }
+      };
+
+      let lookingForClassNextBlue = function () {
+        let test = document.querySelectorAll(".roadMapPoint.blue");
+        for (let i = 0; i < test.length; i = i + 1) {
+          if (test[i].classList.contains("ball")) {
+            test[i].classList.remove("ball");
+            console.log(i + 1);
+            test[i + 1].classList.add("ball");
+            console.log(test[i + 1]);
+            break;
+          }
+        }
+      };
+
+      let lookingForClassMinusGreen = function () {
+        let test = document.querySelectorAll(".roadMapPoint.green");
+        for (let i = 0; i < test.length; i++) {
+          if (test[i].classList.contains("ball")) {
+            test[i].classList.remove("ball");
+            test[i - 1].classList.add("ball");
+          }
+        }
+      };
+
+      let lookingForClassNextGreen = function () {
+        let test = document.querySelectorAll(".roadMapPoint.green");
+        for (let i = 0; i < test.length; i = i + 1) {
+          if (test[i].classList.contains("ball")) {
+            test[i].classList.remove("ball");
+            console.log(i + 1);
+            test[i + 1].classList.add("ball");
+            console.log(test[i + 1]);
+            break;
+          }
+        }
+      };
+
+      let lookingForClassMinusPurple = function () {
+        let test = document.querySelectorAll(".roadMapPoint.purple");
+        for (let i = 0; i < test.length; i++) {
+          if (test[i].classList.contains("ball")) {
+            test[i].classList.remove("ball");
+            test[i - 1].classList.add("ball");
+          }
+        }
+      };
+
+      let lookingForClassNextPurple = function () {
+        let test = document.querySelectorAll(".roadMapPoint.purple");
+        for (let i = 0; i < test.length; i = i + 1) {
+          if (test[i].classList.contains("ball")) {
+            test[i].classList.remove("ball");
+            console.log(i + 1);
+            test[i + 1].classList.add("ball");
+            console.log(test[i + 1]);
+            break;
+          }
+        }
+      };
+
+      let firstContainer = document.querySelector(".navButtonPrev");
+      let secondContainer = document.querySelector(".navButtonNext");
+      let thirdContainer = document.querySelector(".navButtonPrevRed");
+      let fourthContainer = document.querySelector(".navButtonNextRed");
+      let fivthContainer = document.querySelector(".navButtonPrevBlue");
+      let sixContainer = document.querySelector(".navButtonNextBlue");
+      let sevenContainer = document.querySelector(".navButtonPrevGreen");
+      let eigthContainer = document.querySelector(".navButtonNextGreen");
+      let nineContainer = document.querySelector(".navButtonPrevPurple");
+      let tenContainer = document.querySelector(".navButtonNextPurple");
+
+      firstContainer.addEventListener("click", lookingForClassMinusYellow);
+      secondContainer.addEventListener("click", lookingForClassNextYellow);
+      thirdContainer.addEventListener("click", lookingForClassMinusRed);
+      fourthContainer.addEventListener("click", lookingForClassNextRed);
+      fivthContainer.addEventListener("click", lookingForClassMinusBlue);
+      sixContainer.addEventListener("click", lookingForClassNextBlue);
+      sevenContainer.addEventListener("click", lookingForClassMinusGreen);
+      eigthContainer.addEventListener("click", lookingForClassNextGreen);
+      nineContainer.addEventListener("click", lookingForClassMinusPurple);
+      tenContainer.addEventListener("click", lookingForClassNextPurple);
+    </script>
+  </body>
+</html>
