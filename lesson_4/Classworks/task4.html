@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Form work1</title>
+    <script>
+      /*
+        Завдання:
+
+        1. Згенерувати список країн у Select countries
+        2. При виборі країни генерувати ще один Select зі списком
+          міст цієї країни та вивести цей селект у блок result
+        3. При виборі міста слід випадково рандомити температуру від
+        -10 градусів до +40. Якщо температура
+
+          -10 до 0 то 'Сонячно' 'Легкий снігопад' 'Сильний снігопад'
+          0 до 30 то 'Сонячно' 'Дощ' 'Вітер' 'Можливий дощ'
+          30 до 40 то 'Сонячно' 'Засуха' 'Вітер'
+
+        4. Вивести повідомлення на сторінку
+          {Country}. В {City} {Weather} {Temperature} градусів.
+          Україна. У Kyiv Сонячно -10 градусів
+
+          + бонус додати красиві картинки з погодою
+      */
+      window.addEventListener("load", function () {
+        var countries = ["Ukraine", "Poland", "USA"];
+        var ukraineCity = ["Kyiv", "Lviv", "Odesa", "Charkiv"];
+        var polandCity = ["Warszawa", "Poznan", "Krakow", "Katowice"];
+        var usaCity = ["New York", "Los Angeles", "Las Vegas", "Chicago"];
+
+        let countriesSelect = document.querySelector("#countries");
+        let resultBlock = document.querySelector("#result");
+
+        for (let i = 0; i < countries.length; i++) {
+          let countryOption = document.createElement("option");
+          countryOption.innerText = countries[i];
+          countriesSelect.appendChild(countryOption);
+        }
+
+        let citySelectUkraine = document.createElement("select");
+        function makeNewSelectUkraine() {
+          citySelectUkraine.id = "cities";
+          for (let i = 0; i < ukraineCity.length; i++) {
+            let cities = document.createElement("option");
+            cities.innerText = ukraineCity[i];
+            citySelectUkraine.appendChild(cities);
+          }
+          return citySelectUkraine;
+        }
+        let citySelectPoland = document.createElement("select");
+        function makeNewSelectPoland() {
+          citySelectPoland.id = "cities";
+          for (let i = 0; i < polandCity.length; i++) {
+            let cities = document.createElement("option");
+            cities.innerText = polandCity[i];
+            citySelectPoland.appendChild(cities);
+          }
+          return citySelectPoland;
+        }
+
+        let citySelectUSA = document.createElement("select");
+        function makeNewSelectUSA() {
+          citySelectUSA.id = "cities";
+          for (let i = 0; i < usaCity.length; i++) {
+            let cities = document.createElement("option");
+            cities.innerText = usaCity[i];
+            citySelectUSA.appendChild(cities);
+          }
+          return citySelectUSA;
+        }
+
+        let ukraineCountries = makeNewSelectUkraine();
+        let polandCountries = makeNewSelectPoland();
+        let usaCountries = makeNewSelectUSA();
+
+        let temp = [-40, -30, -20, -10, 0, 10, 20, 30, 40];
+
+        function randomNum(min, max) {
+          return Math.floor(Math.random() * (max - min) + min);
+        }
+        // let randomNumber = randomNum(0, 9);
+        // console.log(arrNum);
+
+        function onChange() {
+          let value = countriesSelect.value;
+          if (value === "Ukraine") {
+            resultBlock.appendChild(ukraineCountries);
+            let citiesID = document.querySelector("#cities:last-child");
+            function onChange() {
+              var arrNum = temp[randomNum(0, 9)];
+              let valueNew = citiesID.value;
+              console.log(valueNew);
+              let span = document.createElement("span");
+              span.innerText =
+                valueNew + " Вітряно" + " and temperature is  " + arrNum;
+              resultBlock.appendChild(span);
+            }
+            citiesID.onchange = onChange;
+          } else if (value === "Poland") {
+            resultBlock.appendChild(polandCountries);
+            let citiesID = document.querySelector("#cities");
+            function onChange() {
+              var arrNum = temp[randomNum(0, 9)];
+              let valueNew = citiesID.value;
+              let span = document.createElement("span");
+              span.innerText =
+                valueNew + " Сонячно" + " and temperature is  " + arrNum;
+              resultBlock.appendChild(span);
+            }
+
+            citiesID.onchange = onChange;
+          } else if (value === "USA") {
+            resultBlock.appendChild(usaCountries);
+            let citiesID = document.querySelector("#cities:last-child");
+            function onChange() {
+              var arrNum = temp[randomNum(0, 9)];
+              let valueNew = citiesID.value;
+              console.log(valueNew);
+              let span = document.createElement("span");
+              span.innerText =
+                valueNew + " Вітряно" + " and temperature is  " + arrNum;
+              resultBlock.appendChild(span);
+            }
+            citiesID.onchange = onChange;
+          }
+        }
+        countriesSelect.onchange = onChange;
+      });
+
+      // d
+    </script>
+  </head>
+  <body>
+    <select id="countries"></select>
+    <div id="result"></div>
+  </body>
+</html>

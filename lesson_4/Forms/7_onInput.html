@@ -1,0 +1,65 @@
+<!-- Подія input спрацьовує при зміні значення текстового елемента і підтримується всіма браузерами, крім IE<9.
+
+В IE9 воно підтримується частково, а саме не виникає при видаленні символів.-->
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>onInput</title>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var input = document.getElementById("on-input");
+      input.addEventListener("change", function () {  // измените на onchange
+
+        // if (input.value.length < 5) {
+        //   input.style.border = '1px solid red';
+        //   //alert('not enough symbols')
+        // } else {
+        //   input.style.border = '1px solid green';
+        // }
+        // document.getElementById('result').innerHTML = input.value;
+
+        console.log(input.validity)
+
+        if (input.validity.tooShort) {
+          input.setCustomValidity('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
+        } else {
+          input.setCustomValidity('');
+        }
+        console.log( input.value );
+      });
+    });
+
+    /*
+      field.validity
+    */
+  </script>
+</head>
+
+<body>
+
+  <style>
+    input {
+      outline: none;
+    }
+
+    input:valid {
+      border: 1px solid green;
+    }
+
+    input:invalid {
+      border: 1px solid red;
+    }
+  </style>
+  <form>
+    Введите дату:
+    <input maxlength="10" minlength="5" type="" required id="on-input" />
+    <br> oninput:
+    <span id="result"></span>
+    <button> Submit </button>
+  </form>
+
+</body>
+
+</html>

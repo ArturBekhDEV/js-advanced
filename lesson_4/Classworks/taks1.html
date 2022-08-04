@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Forms Task 1</title>
+  </head>
+  <body>
+    <form id="MyValidateForm">
+      <input type="text" name="login" placeholder="Ваш логин" />
+      <input type="password" name="pas1" placeholder="Ваш пароль" />
+      <input type="password" name="pas2" placeholder="Повторите пароль" />
+      <label for="agree">
+        <span>Вы согласны с лицензионым соглашением.</span>
+        <input type="checkbox" id="agree" />
+      </label>
+      <input type="submit" id="submit" value="Отправить" disabled />
+    </form>
+
+    <script>
+      /*
+          Завдання:
+         Зробити валідацію форми:
+         1. Логін / Пароль не може бути порожнім
+         2. Паролі повинні збігтися
+         3. Поки не варто що користувач згоден з осіб. угодою – кнопка відправки не активна
+
+         + бонус – те поле, яке не пройшло валідацію підсвічувати червоним.
+                 - яке пройшло – підсвічувати зеленим.
+                 
+    */
+      let form = document.getElementById("MyValidateForm");
+      let loginInput = document.querySelector("input[name='login']");
+      let passwordInput1 = document.querySelector("input[name='pas1']");
+      let passwordInput2 = document.querySelector("input[name='pas2']");
+      let agreeBtn = document.getElementById("agree");
+      let submitBtn = document.getElementById("submit");
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        if (loginInput.value === "") {
+          alert("Pls type Login");
+        } else if (passwordInput1.value === "") {
+          alert("Pls type  your Password");
+        } else if (passwordInput2.value != passwordInput1.value) {
+          alert("Your Password doesnt Match!");
+        }
+      });
+
+      agreeBtn.addEventListener("click", function (e) {
+        if (agreeBtn.checked) {
+          submitBtn.disabled = false;
+        }
+      });
+    </script>
+
+    <style>
+      #MyValidateForm {
+        width: 350px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      #MyValidateForm input {
+        margin-bottom: 10px;
+        box-sizing: border-box;
+        padding: 10px 20px;
+      }
+      .error {
+        border: 1px solid red;
+      }
+      .OK {
+        border: 1px solid green;
+      }
+    </style>
+  </body>
+</html>
