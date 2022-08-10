@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Homework</title>
+  </head>
+  <body>
+    <div id="timer">
+      <h2>Here is timer!</h2>
+      <h3 id="timerSec">0:0</h3>
+      <button id="stopTimer">stop timer</button>
+      <button id="startTimer">start timer</button>
+      <button id="reset">reset timer</button>
+    </div>
+    <!--
+        Створіть лічильник секунд, який починає звіт з 1 і закінчується на 30,
+        також додайте кнопки котрий зупиняють звіт, та запускають його заново та додайте кнопку обнулюючу звіт.
+        Також спробуйте змінити код так, щоб звіт починався з 30 і закінчувався на 1.
+
+       + бонус: Зробити так, щоб на кожен тик (1с/2c) змінювався колір фону. Можна на основі генератора випадкового кольору з попередніх уроків.
+       + бонус: Зробити візуалізацію стрілки, яка йде по колу
+            document.getElementById("myDIV").style.transform = "rotate(7deg)";
+
+       + бонус: Зробити кнопки які вибирають режим, в якому йде відлік - звичайний від 0 до 30 або реверсивний від 30 до 0
+      -->
+    <script>
+      let btnStart = document.getElementById("startTimer");
+      let btnStop = document.getElementById("stopTimer");
+      let btnReset = document.getElementById("reset");
+      let pause = false;
+      console.log(!pause);
+      let sec = 1;
+      timer();
+      function timer() {
+        window.setInterval(function () {
+          if (pause === false) {
+            document.getElementById("timerSec").innerHTML = "0:" + sec;
+            sec++;
+            if (sec > 30) {
+              clearInterval(timer);
+            }
+          }
+        }, 1000);
+      }
+
+      btnStop.addEventListener("click", function (e) {
+        e.preventDefault();
+        pause = true;
+      });
+      btnStart.addEventListener("click", function (e) {
+        e.preventDefault();
+        pause = false;
+      });
+
+      btnReset.addEventListener("click", function (e) {
+        e.preventDefault();
+        sec = 1;
+        document.getElementById("timerSec").innerHTML = "0:0";
+        stop();
+        timer();
+
+        function stop() {
+          clearInterval(timer);
+          clearInterval(timerNew);
+        }
+      });
+    </script>
+  </body>
+</html>

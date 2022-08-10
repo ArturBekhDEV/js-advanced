@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Classwork</title>
+  </head>
+  <body>
+    <script>
+      /*
+        Завдання:
+         1. За допомогою методів викладених нижче, переформатувати ITEA_COURSES на масив, який містить довжину рядків кожного з елементів.
+         2. Відфільтрувати масив ITEA_COURSES за абеткою.
+             + Бонусний бал. Вивести на сторінку списком
+         3. Реалізація функції пошуку за масивом ITEA_COURSES.
+             + Бонусний бал. Вивести на сторінку інпут і кнопку за якою спрацьовуватиме пошук.
+      */
+
+      const ITEA_COURSES = [
+        "Курс HTML & CSS",
+        "JavaScript базовый курс",
+        "JavaScript продвинутый курс",
+        "JavaScript Professional",
+        "Angular 2.4 (базовый)",
+        "Angular 2.4 (продвинутый)",
+        "React.js",
+        "React Native",
+        "Node.js",
+        "Vue.js",
+      ];
+
+      let newArr = ITEA_COURSES.map((item) => item.length);
+      // console.log(newArr);
+      let newArrAlphabet = ITEA_COURSES.sort((a, b) => a.localeCompare(b));
+      // console.log(newArrAlphabet);
+
+      let ulObj = document.createElement("ul");
+      document.body.appendChild(ulObj);
+
+      for (let i = 0; i < newArrAlphabet.length; i++) {
+        let liObj = document.createElement("li");
+        liObj.innerHTML = newArrAlphabet[i];
+        ulObj.appendChild(liObj);
+      }
+
+      function searchInArr(keyword) {
+        let test = ITEA_COURSES.find((item) => {
+          if (item === keyword) {
+            console.log(item);
+          }
+        });
+      }
+      // searchInArr("Vue.js");
+
+      /*
+        Завдання 2:
+         Написати фільтр масиву за:
+         Актору, тривалості
+
+         Бонус:
+           Зробити графічну оболонку для програми:
+           - Селект зі списком акторів
+           - Селект або інпут із тривалістю
+           - Результат у вигляді списку фільмів
+      */
+
+      var stars = [
+        "Elijah Wood",
+        "Ian McKellen",
+        "Orlando Bloom",
+        "Ewan McGregor",
+        "Liam Neeson",
+        "Natalie Portman",
+        "Ewan McGregor",
+        "Billy Bob Thornton",
+        "Martin Freeman",
+      ];
+      var movies = [
+        {
+          name: "Lord of the Rings",
+          duration: 240,
+          starring: ["Elijah Wood", "Ian McKellen", "Orlando Bloom"],
+        },
+        {
+          name: "Star Wars: Episode I - The Phantom Menace",
+          duration: 136,
+          starring: ["Ewan McGregor", "Liam Neeson", "Natalie Portman"],
+        },
+        {
+          name: "Fargo",
+          duration: 100,
+          starring: ["Ewan McGregor", "Billy Bob Thornton", "Martin Freeman"],
+        },
+        {
+          name: "V for Vendetta",
+          duration: 150,
+          starring: ["Hugo Weaving", "Natalie Portman", "Rupert Graves"],
+        },
+      ];
+
+      function sortActor(actorName) {
+        let find = movies.map((item) => item.starring);
+
+        find.forEach((item, indx) => {
+          let findIf = item.map((el, index) => {
+            if (el === actorName) {
+              let findActor = movies.map((item) => item.name);
+              console.log(findActor[indx]);
+
+              let findDuration = movies.map((item) => item.duration);
+
+              let spanFilm = document.createElement("span");
+              spanFilm.innerText = findActor[indx];
+              document.body.appendChild(spanFilm);
+
+              let spanDuration = document.createElement("span");
+              spanDuration.innerText = ` and have for  ${findDuration[indx]} minutes`;
+              document.body.appendChild(spanDuration);
+            }
+          });
+        });
+      }
+      sortActor("Hugo Weaving"); // ask me for actor
+    </script>
+  </body>
+</html>

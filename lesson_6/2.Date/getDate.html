@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Date.get* </title>
+    <meta charset="UTF-8">
+    <script type="text/javascript" language="JavaScript">
+        /*
+          Всі get методи повертають результат для місцевої часової зони.
+           Існують також UTC-варіанти цих методів, що повертають день,
+           місяць, рік тощо. для зони GMT+0 (UTC): getUTCFullYear(),
+           getUTCMonth(), getUTCDay(). Тобто відразу після "get" вставляється "UTC".
+        */
+
+        document.addEventListener('DOMContentLoaded', function(){
+          var date = new Date();
+          
+          document.body.innerHTML += "<b>date = </b>" + date + "<br/>";
+          document.body.innerHTML += "<b>date.getDate() = </b>" + date.getDate() + "<br/>";
+          document.body.innerHTML += "<b>date.getMonth() = </b>" + date.getMonth() + "<br/>";
+          document.body.innerHTML += "<b>date.getFullYear() = </b>" + date.getFullYear() + "<br/>"; 
+
+          /*
+            Деякі браузери реалізують нестандартний метод getYear().
+             Десь він повертає лише дві цифри з року, десь чотири.
+             Так чи інакше, цей метод відсутній у стандарті JavaScript.
+             Не використовуйте його. Для отримання року є getFullYear()
+          */
+
+          document.body.innerHTML += "<b>date.getYear() = </b>" + date.getYear() + "<br/>"; // Застарілий метод, який вважає дату від 1900 року
+          document.body.innerHTML += "<b>date.getDay() = </b>" + date.getDay() + "<br/><br/>"; // від 0 (неділя) до 6 (субота).
+          
+          document.body.innerHTML += "<b>date.getHours() = </b>" + date.getHours()  + "<br/>";
+          document.body.innerHTML += "<b>date.getUTCHours() = </b>" + date.getUTCHours()  + "<br/>";
+          document.body.innerHTML += "<b>date.getMinutes() = </b>" + date.getMinutes()+ "<br/>";
+          document.body.innerHTML += "<b>date.getSeconds() = </b>" + date.getSeconds() + "<br/>";
+          document.body.innerHTML += "<b>date.getMilliseconds() = </b>" + date.getMilliseconds() + "<br/><br/>";
+
+          // .getTime() повертає число мілісекунд, що пройшли з 01.01.1970 00:00:00 UTC
+          document.body.innerHTML += "<b>date.getTime() = </b>" + date.getTime() + "<br/><br/>"; 
+
+          // getTimezoneOffset() повертає різницю між місцевим та UTC-часом, у хвилинах.
+          document.body.innerHTML += "<b>date.getTimezoneOffset() = </b>" + date.getTimezoneOffset() + "<br/><br/>";
+        })
+    </script>
+</head>
+<body>
+</body>
+</html>

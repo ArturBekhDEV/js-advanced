@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Classwork</title>
+  </head>
+  <body>
+    <header>
+      <input id="MyDateSelector" type="date" />
+      <button id="ShowDayButton">Показать день недели</button>
+    </header>
+    <div id="result"></div>
+    <script>
+      /*
+            Створіть функцію, яка на кліку на "показати день тижня" повертає день тижня для обраної дати з інпуту.
+             День потрібно повернути в div#result у текстовому форматі, тобто понеділок, вівторок, субота тощо
+          */
+
+      let btn = document.getElementById("ShowDayButton");
+      let inputDate = document.getElementById("MyDateSelector");
+
+      btn.addEventListener("click", function () {
+        let date = new Date(inputDate.value);
+        let dayOfWeek = date.getDay();
+        if (dayOfWeek === 0) {
+          document.getElementById("result").innerHTML = `hello its Sunday!`;
+        } else if (dayOfWeek === 1) {
+          document.getElementById("result").innerHTML = `hello its Monday!`;
+        } else if (dayOfWeek === 2) {
+          document.getElementById("result").innerHTML = `hello its Tuesday!`;
+        } else if (dayOfWeek === 3) {
+          document.getElementById("result").innerHTML = `hello its Wednesday!`;
+        } else if (dayOfWeek === 4) {
+          document.getElementById("result").innerHTML = `hello its Thursday!`;
+        } else if (dayOfWeek === 5) {
+          document.getElementById("result").innerHTML = `hello its Friday!`;
+        } else if (dayOfWeek === 6) {
+          document.getElementById("result").innerHTML = `hello its Saturday!`;
+        }
+      });
+    </script>
+  </body>
+</html>
