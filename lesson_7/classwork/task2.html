@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inheritance</title>
+  </head>
+  <body>
+    <!-- 
+        Реалізувати успадкування за прикладом, наведеним на картинку inheritance
+         
+          class Man повинен мати поля
+             name
+             age
+             country
+         + методи з картинки
+        
+         Кожен метод повинен виводити у консолі всі поля + ім'я методу
+         WALK:
+             console.log(`Hi! My name is ${name}, and Im {age} years old. Im from ${country}, and I like to WALK a lot`)
+        
+
+     -->
+
+    <script>
+      class Man {
+        constructor(name, age, country) {
+          this.name = name;
+          this.age = age;
+          this.country = country;
+        }
+
+        eat() {
+          console.log(
+            `Hi! My name is ${this.name}, and Im ${this.age} years old. Im from ${this.country}, and I like to EAT a lot`
+          );
+        }
+        drink() {
+          console.log(
+            `Hi! My name is ${this.name}, and Im ${this.age} years old. Im from ${this.country}, and I like to DRINK a lot`
+          );
+        }
+        walk() {
+          console.log(
+            `Hi! My name is ${this.name}, and Im ${this.age} years old. Im from ${this.country}, and I like to WALK a lot`
+          );
+        }
+      }
+
+      class Doctor extends Man {
+        constructor(name, age, country, cure) {
+          super(name, age, country);
+          this.cure = cure;
+        }
+
+        curefunc() {
+          console.log(
+            `Hi! My name is ${this.name}, and Im ${this.age} years old. Im from ${this.country}, and I like ${this.cure}to CURE a lot`
+          );
+        }
+      }
+
+      class Soldier extends Man {
+        constructor(name, age, country, shoot) {
+          super(name, age, country);
+          this.shoot = shoot;
+        }
+
+        shootfunc() {
+          console.log(
+            `Hi! My name is ${this.name}, and Im ${this.age} years old. Im from ${this.country}, and I like to SHOOT a lot ${this.shoot}`
+          );
+        }
+      }
+
+      let newMan = new Man("Artur", 27, "Ukraine");
+      let newDoctor = new Doctor("Doctor", 55, "Poland", "cure!");
+      let newSoldier = new Soldier("Soldier", 26, "USA", "Shooting");
+    </script>
+  </body>
+</html>

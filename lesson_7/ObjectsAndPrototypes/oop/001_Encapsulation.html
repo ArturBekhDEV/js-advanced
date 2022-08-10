@@ -1,0 +1,32 @@
+<!-- Інкапсуляція - розміщення одного об'єкта або класу всередині іншого для розмежування доступу до них. -->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Инкапсуляция</title>
+    <script type="text/javascript">
+
+        var MyClass = function () {
+
+            // закритий метод
+            function privateMethod () {
+                document.write("закритий метод");
+            }
+
+            // відкритий метод
+            this.publicMethod = function () {
+                document.write("відкритий метод <br />");
+                privateMethod();
+            };
+
+        };
+        var obj = new MyClass();
+        obj.publicMethod();
+
+        obj.privateMethod(); // помилка
+
+    </script>
+</head>
+<body>
+</body>
+</html>
+

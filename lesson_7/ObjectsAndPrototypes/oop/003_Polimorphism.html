@@ -1,0 +1,49 @@
+<!-- Поліморфізм – можливість об'єктів з однаковою специфікацією мати різну реалізацію. -->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Полиморфизм</title>
+    <script type="text/javascript">
+// ---- батьківський клас ----
+
+        function Animal(name, walkSpeed) {
+            this.name = name;
+            this.walkSpeed = walkSpeed;
+            // додаємо методи об'єкту
+            this.showInfo = function () {
+                document.write("Эта животное " + this.name + " передвигается со скоростью " + this.walkSpeed + "<br />"); 
+            };
+        };
+
+        // ---- клас спадкоємець ----
+
+         function Bird(name, walkSpeed) {
+            this.name = name;
+            this.walkSpeed = walkSpeed;
+        };
+
+        function Predator(name, walkSpeed) {
+            this.name = name;
+            this.walkSpeed = walkSpeed;
+            this.showInfo = function () {
+                document.write("Это животное хищник, он всегда быстрый"); 
+            };
+        };
+
+        Bird.prototype = new Animal();
+        Predator.prototype = new Animal();
+
+        var bird = new Bird("Owl", 50);
+        var wolf = new Predator("Wolf", 70);
+
+        bird.showInfo();
+        wolf.showInfo();
+        console.log(wolf);
+        console.log(bird);
+
+</script>
+</head>
+<body>
+</body>
+</html>
+
