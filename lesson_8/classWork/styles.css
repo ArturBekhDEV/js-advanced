@@ -1,0 +1,13 @@
+body {
+  background-color: rgb(209, 209, 209);
+}
+
+ul {
+  text-decoration: none;
+  list-style: none;
+  font-size: 20px;
+}
+
+.btn-hide {
+  display: none;
+}
