@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Forms Task 1</title>
+    <script>
+      /*
+        Завдання:
+         Зробити валідацію форми:
+         1. Логін / Пароль не може бути порожнім
+         2. те поле, яке не пройшло валідацію, підсвічувати червоним, яке пройшло - підсвічувати зеленим.
+         3. Поки користувач не згоден з угодою – кнопка відправки не активна
+    */
+    </script>
+  </head>
+  <body>
+    <form id="MyValidateForm">
+      <input type="text" name="login" placeholder="Ваш логин" />
+      <input type="password" name="pas1" placeholder="Ваш пароль" />
+      <input type="password" name="pas2" placeholder="Повторите пароль" />
+      <label for="agree">
+        <span>Вы согласны с лицензионым соглашением.</span>
+        <input type="checkbox" id="agree" />
+      </label>
+      <input type="submit" id="submit" value="Отправить" disabled />
+    </form>
+
+    <style>
+      #MyValidateForm {
+        width: 350px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      #MyValidateForm input {
+        margin-bottom: 10px;
+        box-sizing: border-box;
+        padding: 10px 20px;
+      }
+      .error {
+        border: 1px solid red;
+      }
+      .OK {
+        border: 1px solid green;
+      }
+    </style>
+
+    <script>
+      let login = document.querySelector("input[name]");
+      let password = document.querySelector("input[name=pas1]");
+      let passwordMatch = document.querySelector("input[name=pas2]");
+      console.log(passwordMatch);
+      let checkBox = document.getElementById("agree");
+      let btn = document.getElementById("submit");
+      checkBox.addEventListener("click", function (e) {
+        if (checkBox.checked === true) {
+          btn.disabled = false;
+        } else if (checkBox.checked === false) {
+          btn.disabled = true;
+        }
+      });
+
+      btn.addEventListener("click", function (e) {
+        e.preventDefault();
+        console.log(password.value);
+        if (login.value != "") {
+          login.classList.add("OK");
+        } else {
+          login.classList.add("error");
+        }
+        if (password.value === passwordMatch.value && password.value != "") {
+          password.classList.add("OK");
+        } else {
+          password.classList.add("error");
+          passwordMatch.classList.add("error");
+        }
+      });
+    </script>
+  </body>
+</html>
